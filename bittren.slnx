@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="bittren.vcxproj" Id="64d6cd32-b65e-4acb-a241-3cc5c0a7ca31" />
+</Solution>
