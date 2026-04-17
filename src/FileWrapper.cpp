@@ -4,6 +4,7 @@
 #include <locale>
 #include <codecvt>
 #include "windows.h"
+#include "StringUtils.h"
 
 enum class FileMode
 {
@@ -18,9 +19,10 @@ FileWrapper::FileWrapper(HANDLE handle)
 
 std::expected<FileWrapper, FileError> FileWrapper::open(const char* filename, FileMode mode)
 {
-    wchar_t w_filename[MAX_PATH];
+    const wchar_t* w_filename = UTF8toWide<MAX_PATH>(filename);
 
-    if (MultiByteToWideChar(CP_UTF8, 0, filename, -1, w_filename, MAX_PATH) == 0)
+    // length of the string is 0
+    if (w_filename[0] == L'\0')
     {
         return std::unexpected(FileError::unknown);
     }
@@ -51,6 +53,8 @@ FileWrapper::~FileWrapper()
 
 FileWrapper& FileWrapper::operator=(FileWrapper&& file) noexcept
 {   
+    if (this == &file)
+        return *this;
     m_handle = file.m_handle;
     file.m_handle = INVALID_HANDLE_VALUE;
     return *this;
