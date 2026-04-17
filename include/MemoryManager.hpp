@@ -6,7 +6,7 @@ class MemoryManager
 private:
 	uint8_t* m_base;
 	size_t m_capacity;
-	size_t m_offset;
+	uint8_t* m_current;
 
 public:
 	MemoryManager() = delete;
@@ -14,9 +14,10 @@ public:
 	MemoryManager(MemoryManager&&) = delete;
 	MemoryManager& operator=(const MemoryManager&) = delete;
 	MemoryManager& operator=(MemoryManager&&) = delete;
-	~MemoryManager() = delete;
 
-	void Init(size_t);
+	MemoryManager(size_t);
+	~MemoryManager();
+
 	uint8_t* Alloc(size_t length, size_t align);
 	void Clear();
 };

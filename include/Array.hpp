@@ -7,7 +7,7 @@ template <typename T>
 class Array
 {
 private:
-	T m_data[];
+	T* m_data;
 	size_t m_size = 0;
 	const size_t capacity;
 public:

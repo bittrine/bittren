@@ -24,6 +24,9 @@
     <ClCompile Include="src\MemoryManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Array.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\FileWrapper.hpp">
@@ -32,10 +35,16 @@
     <ClInclude Include="include\MemoryManager.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\StringUtils.h">
+    <ClInclude Include="include\StringUtils.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\StringID.h">
+    <ClInclude Include="include\StringID.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Array.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\assert.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

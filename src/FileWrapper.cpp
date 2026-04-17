@@ -1,12 +1,9 @@
 #include "FileWrapper.hpp"
-#include <iostream>
-#include <string>
-#include <locale>
-#include <codecvt>
-#include "windows.h"
-#include "StringUtils.h"
+#include "StringUtils.hpp"
 
-enum class FileMode
+#include "windows.h"
+
+enum class FileMode : DWORD
 {
     read    = GENERIC_READ,
     write   = GENERIC_WRITE
@@ -17,18 +14,10 @@ FileWrapper::FileWrapper(HANDLE handle)
     m_handle = handle;
 }
 
-std::expected<FileWrapper, FileError> FileWrapper::open(const char* filename, FileMode mode)
+std::expected<FileWrapper, uint64_t> FileWrapper::open(const char* filename, FileMode mode)
 {
-    const wchar_t* w_filename = UTF8toWide<MAX_PATH>(filename);
-
-    // length of the string is 0
-    if (w_filename[0] == L'\0')
-    {
-        return std::unexpected(FileError::unknown);
-    }
-
     HANDLE handle = CreateFileW(
-        w_filename,
+        UTF8toWide<MAX_PATH>(filename),
         static_cast<DWORD>(mode),
         0,
         nullptr,
@@ -39,7 +28,7 @@ std::expected<FileWrapper, FileError> FileWrapper::open(const char* filename, Fi
 
     if (handle == INVALID_HANDLE_VALUE)
     {
-        return std::unexpected(FileError::unknown);
+        return std::unexpected(GetLastError());
     }
     return FileWrapper(handle);
 }

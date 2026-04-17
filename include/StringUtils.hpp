@@ -1,6 +1,7 @@
 #pragma once
 
 #include <windows.h>
+#include "assert.hpp"
 
 template <size_t capacity = 512>
 struct UTF8toWide {
@@ -15,9 +16,7 @@ struct UTF8toWide {
 			                          buffer,
 			                          capacity);
 		// TODO check ret and add asserts
-		if (ret == 0 && capacity > 0) {
-			buffer[0] = L'\0';
-		}
+		ASSERT(ret != 0);
 	}
 
 	operator const wchar_t* () const

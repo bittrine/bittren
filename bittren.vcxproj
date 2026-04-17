@@ -128,15 +128,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Array.cpp" />
     <ClCompile Include="src\FileWrapper.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\MemoryManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\Array.hpp" />
+    <ClInclude Include="include\assert.hpp" />
     <ClInclude Include="include\FileWrapper.hpp" />
     <ClInclude Include="include\MemoryManager.hpp" />
-    <ClInclude Include="include\StringID.h" />
-    <ClInclude Include="include\StringUtils.h" />
+    <ClInclude Include="include\StringID.hpp" />
+    <ClInclude Include="include\StringUtils.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
